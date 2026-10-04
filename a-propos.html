@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="À propos de Zaid Bouchiar — Élève ingénieur en Informatique, spécialisé en IA & Data Science à l'EMSI Rabat. Parcours académique et vision."
+    />
+    <title>À propos & Parcours — Zaid Bouchiar | Ingénieur IA & Data</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body data-page="about">
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/index.html" aria-label="Zaid Bouchiar Accueil">
+          ZB<span class="logo-dot">.</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="site-nav" aria-label="Navigation principale">
+          <div class="nav-capsule">
+            <a href="/index.html" class="nav-link">Accueil</a>
+            <a href="/a-propos.html" class="nav-link is-active">À propos</a>
+            <a href="/competences.html" class="nav-link">Compétences</a>
+            <a href="/cv.html" class="nav-link">CV</a>
+            <a href="/certificats.html" class="nav-link">Certificats</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
+          </div>
+        </nav>
+
+        <div class="header-cta">
+          <a class="btn btn-primary btn-sm" href="/contact.html">Me contacter</a>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-label="Ouvrir le menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-inner">
+          <a href="/index.html" class="mobile-link">Accueil</a>
+          <a href="/a-propos.html" class="mobile-link is-active">À propos</a>
+          <a href="/competences.html" class="mobile-link">Compétences</a>
+          <a href="/cv.html" class="mobile-link">CV</a>
+          <a href="/certificats.html" class="mobile-link">Certificats</a>
+          <a href="/contact.html" class="mobile-link">Contact</a>
+          <a href="/contact.html" class="btn btn-primary btn-full mt-2">Me contacter</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Page Intro -->
+      <section class="page-intro">
+        <div class="container page-intro-center">
+          <span class="eyebrow">Profil & Trajectoire</span>
+          <h1 class="page-title">À propos de moi & Parcours</h1>
+          <p class="page-lead">
+            Élève ingénieur en dernière année à l'EMSI Rabat. Découvrez mes fondements scientifiques, mon parcours académique et mon engagement en Intelligence Artificielle & Data Science.
+          </p>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <section class="page-section">
+        <div class="container about-page-layout" id="about-page-container"></div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner" id="footer-container"></div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

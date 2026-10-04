@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio professionnel de Zaid Bouchiar — Élève ingénieur en Informatique, spécialisé en Intelligence Artificielle & Data Science à l'EMSI Rabat."
+    />
+    <title>Zaid Bouchiar — Ingénieur IA & Data Science | Portfolio</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body data-page="home">
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/index.html" aria-label="Zaid Bouchiar Accueil">
+          ZB<span class="logo-dot">.</span>
+        </a>
+
+        <!-- Desktop Navigation Capsule -->
+        <nav class="site-nav" aria-label="Navigation principale">
+          <div class="nav-capsule">
+            <a href="/index.html" class="nav-link is-active">Accueil</a>
+            <a href="/a-propos.html" class="nav-link">À propos</a>
+            <a href="/competences.html" class="nav-link">Compétences</a>
+            <a href="/cv.html" class="nav-link">CV</a>
+            <a href="/certificats.html" class="nav-link">Certificats</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
+          </div>
+        </nav>
+
+        <!-- CTA Button -->
+        <div class="header-cta">
+          <a class="btn btn-primary btn-sm" href="/contact.html">Me contacter</a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-label="Ouvrir le menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-inner">
+          <a href="/index.html" class="mobile-link is-active">Accueil</a>
+          <a href="/a-propos.html" class="mobile-link">À propos</a>
+          <a href="/competences.html" class="mobile-link">Compétences</a>
+          <a href="/cv.html" class="mobile-link">CV</a>
+          <a href="/certificats.html" class="mobile-link">Certificats</a>
+          <a href="/contact.html" class="mobile-link">Contact</a>
+          <a href="/contact.html" class="btn btn-primary btn-full mt-2">Me contacter</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Home Hero -->
+      <section class="home-hero">
+        <div class="container home-hero-grid" id="home-hero-container"></div>
+      </section>
+
+      <!-- Key Hub Cards -->
+      <section class="home-section-cards">
+        <div class="container">
+          <div class="page-intro-center">
+            <span class="eyebrow">Navigation directe</span>
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: #ffffff; margin: 0.4rem 0 0.8rem;">
+              Explorez mon profil par section
+            </h2>
+            <p class="page-lead">
+              Chaque section est accessible indépendamment pour une consultation ciblée de mes compétences, de mon parcours et de mes documents officiels.
+            </p>
+          </div>
+
+          <div class="home-cards-grid" id="home-cards-container"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner" id="footer-container"></div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
