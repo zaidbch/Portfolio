@@ -92,6 +92,14 @@ export const cv = {
 
 export const certificates = [
   {
+    id: "java-25",
+    name: "Oracle Certified Professional: Java SE 25 Developer",
+    organization: "Oracle",
+    date: "16 juillet 2026",
+    domain: "Programmation",
+    file: "/documents/certificats/java-se-25-developer.pdf",
+  },
+  {
     id: "big-data",
     name: "Introduction to Big Data",
     organization: "University of California San Diego — Coursera",
@@ -171,4 +179,35 @@ export const certificates = [
     domain: "Frontend",
     file: "/documents/certificats/interactivity-with-javascript.pdf",
   },
+];
+
+
+export const projects = [
+  {
+    id: "rag-pipeline",
+    title: "Pipeline RAG Avancé (LLM)",
+    description: "Conception d'un système de Question/Réponse sur documents internes utilisant LangChain, Ollama et ChromaDB.",
+    techs: ["Python", "LangChain", "Ollama", "ChromaDB", "FastAPI"],
+    githubUrl: "https://github.com/zaidbch/rag-pipeline",
+    demoUrl: "",
+    image: ""
+  },
+  {
+    id: "data-pipeline",
+    title: "Pipeline de Données & Analytics",
+    description: "Mise en place d'un pipeline ETL distribué pour le traitement de gros volumes de données. Orchestration avec Airflow.",
+    techs: ["Apache Spark", "Airflow", "Docker", "PostgreSQL"],
+    githubUrl: "https://github.com/zaidbch/data-pipeline",
+    demoUrl: "",
+    image: ""
+  },
+  {
+    id: "smart-api",
+    title: "API de Prédiction Machine Learning",
+    description: "Développement d'une API REST robuste permettant d'exécuter des prédictions en temps réel basées sur un modèle de ML.",
+    techs: ["FastAPI", "Scikit-Learn", "Pandas", "Docker"],
+    githubUrl: "https://github.com/zaidbch/ml-prediction-api",
+    demoUrl: "",
+    image: ""
+  }
 ];

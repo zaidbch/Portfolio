@@ -15,6 +15,7 @@ export default defineConfig({
         cv: resolve(__dirname, "cv.html"),
         certificates: resolve(__dirname, "certificats.html"),
         contact: resolve(__dirname, "contact.html"),
+        projects: resolve(__dirname, "projets.html"),
       },
     },
   },

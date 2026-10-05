@@ -1,4 +1,6 @@
-/* ==========================================================================
+import os
+
+css_content = """/* ==========================================================================
    PORTFOLIO - PREMIUM TECH & DATA DESIGN
    Theme: Minimalist, Professional, High-End SaaS
    ========================================================================== */
@@ -22,15 +24,10 @@
   
   /* Brand/Accent - Elegant Blue/Indigo */
   --primary: #09090b; /* Primary actions are dark for a premium feel */
-  --on-primary: #ffffff;
-  --surface: #ffffff;
   --accent: #2563eb;
-  --accent-color: #2563eb;
   --accent-light: #60a5fa;
   --accent-soft: rgba(37, 99, 235, 0.08);
   --emerald: #059669;
-  --bg-card: #ffffff;
-  --border-color: #e4e4e7;
   
   /* Shadows - Smooth & Layered (SaaS style) */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -62,11 +59,6 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--bg);
-  color-scheme: light;
-}
-
-html[data-theme="dark"] {
-  color-scheme: dark;
 }
 
 body {
@@ -101,34 +93,11 @@ body::before {
 main { flex-grow: 1; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
-h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; color: var(--text-main); }
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; }
 
 .container {
   width: min(var(--max-w), calc(100% - 3rem));
   margin-inline: auto;
-}
-
-/* Accessibility: Skip to main content */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary);
-  color: var(--on-primary);
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  border-radius: var(--radius-full);
-  z-index: 1000;
-  box-shadow: var(--shadow-lg);
-  transition: top 0.3s var(--ease-smooth);
-}
-
-.skip-link:focus {
-  top: 1.5rem;
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
 }
 
 /* ==========================================================================
@@ -179,7 +148,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
@@ -300,18 +269,17 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 
 .btn-primary {
   background: var(--primary);
-  color: var(--on-primary);
+  color: #ffffff;
   box-shadow: var(--shadow-sm);
 }
 .btn-primary:hover {
-  filter: brightness(1.12);
-  color: var(--on-primary);
+  background: #27272a;
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-  background: var(--surface);
+  background: #ffffff;
   color: var(--text-main);
   border-color: var(--border-solid);
   box-shadow: var(--shadow-xs);
@@ -356,7 +324,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   align-items: center;
   gap: 0.5rem;
   padding: 0.375rem 0.875rem;
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
@@ -423,7 +391,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 
 .home-photo-card {
   position: relative;
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-lg);
   padding: 0.75rem;
@@ -448,7 +416,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   position: absolute;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-solid);
   display: flex;
@@ -487,7 +455,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .home-card {
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   padding: 2rem 1.5rem;
@@ -518,7 +486,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 
 .home-card:hover .home-card-icon {
   background: var(--text-main);
-  color: var(--bg);
+  color: #ffffff;
   transform: scale(1.05);
 }
 
@@ -570,28 +538,11 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .about-narrative-card {
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   padding: 2.5rem;
   box-shadow: var(--shadow-md);
-}
-
-.about-narrative-card h3,
-.contact-form-title {
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin: 0 0 1rem;
-}
-
-.about-objective {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.about-link {
-  color: var(--accent);
 }
 
 .about-narrative-card p {
@@ -631,7 +582,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .timeline-block { margin-bottom: 3rem; }
-.timeline-block h3 { font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--text-main); }
+.timeline-block h3 { font-size: 1.25rem; margin-bottom: 1.5rem; }
 
 .timeline-items {
   display: flex;
@@ -650,7 +601,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   top: 0.25rem;
   width: 9px;
   height: 9px;
-  background: var(--surface);
+  background: #ffffff;
   border: 2px solid var(--text-dim);
   border-radius: 50%;
   transform: translateX(-50%);
@@ -685,7 +636,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 .strength-card {
   padding: 1.25rem;
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
@@ -710,12 +661,11 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 .skills-search-bar input {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.9375rem;
-  color: var(--text-main);
   transition: all 0.2s;
   box-shadow: var(--shadow-sm);
 }
@@ -752,7 +702,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   padding: 0.375rem 0.875rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-full);
   color: var(--text-secondary);
@@ -762,7 +712,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 .filter-tab:hover { background: var(--bg-alt); }
 .filter-tab.is-active {
   background: var(--text-main);
-  color: var(--bg);
+  color: #ffffff;
   border-color: var(--text-main);
 }
 .tab-count {
@@ -779,7 +729,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .skills-card {
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   padding: 1.75rem;
@@ -834,7 +784,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 .skill-chip-icon svg { width: 100%; height: 100%; }
 
 .skill-chip:hover {
-  background: var(--surface);
+  background: #ffffff;
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-1px);
@@ -859,7 +809,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .cv-toolbar {
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   padding: 1.5rem 2rem;
@@ -911,7 +861,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .cert-card {
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -983,7 +933,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   align-items: center;
   gap: 1.25rem;
   padding: 1.5rem;
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
@@ -1024,7 +974,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 }
 
 .contact-form-panel {
-  background: var(--surface);
+  background: #ffffff;
   border: 1px solid var(--border-solid);
   border-radius: var(--radius-md);
   padding: 2.5rem;
@@ -1056,7 +1006,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  background: var(--surface);
+  background: #ffffff;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
@@ -1130,7 +1080,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   z-index: 10;
   width: min(1000px, 100%);
   max-height: 85vh;
-  background: var(--surface);
+  background: #ffffff;
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
@@ -1152,7 +1102,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   width: 32px;
   height: 32px;
   border: 1px solid var(--border-solid);
-  background: var(--surface);
+  background: #ffffff;
   border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
@@ -1236,7 +1186,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   height: 40px;
   border-radius: var(--radius-full);
   background: var(--text-main);
-  color: var(--bg);
+  color: #ffffff;
   border: none;
   box-shadow: var(--shadow-md);
   display: grid;
@@ -1264,7 +1214,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   left: 50%;
   transform: translateX(-50%);
   background: var(--text-main);
-  color: var(--bg);
+  color: #ffffff;
   padding: 0.625rem 1.25rem;
   border-radius: var(--radius-full);
   font-size: 0.875rem;
@@ -1332,171 +1282,9 @@ h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; letter-spacing: -0.02em; c
   .footer-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
   .footer-nav { justify-content: center; }
 }
+"""
 
-/* ==========================================================================
-   Header Actions (Dark Mode, Lang Toggle)
-   ========================================================================== */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+with open("scratch/style.css", "w", encoding="utf-8") as f:
+    f.write(css_content)
 
-html[data-theme="dark"] .theme-toggle .moon-icon { display: none !important; }
-html[data-theme="dark"] .theme-toggle .sun-icon { display: inline !important; }
-html:not([data-theme="dark"]) .theme-toggle .sun-icon { display: none !important; }
-html:not([data-theme="dark"]) .theme-toggle .moon-icon { display: inline !important; }
-
-.theme-toggle, .lang-toggle {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  cursor: pointer;
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  transition: all 0.2s ease;
-}
-.lang-toggle {
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  width: auto;
-  padding: 0 0.8rem;
-}
-
-.theme-toggle:hover, .lang-toggle:hover {
-  background: var(--bg-deep);
-  border-color: var(--border-hover);
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   Dark Mode Theme (Zinc-950)
-   ========================================================================== */
-[data-theme="dark"] {
-  --bg: #09090b;
-  --bg-alt: #18181b;
-  --bg-deep: #27272a;
-  --surface: #18181b;
-  --bg-card: #18181b;
-
-  --text-main: #f4f4f5;
-  --text-secondary: #e4e4e7;
-  --text-muted: #d4d4d8;
-  --text-dim: #a1a1aa;
-
-  --border-light: rgba(255, 255, 255, 0.08);
-  --border-solid: #3f3f46;
-  --border-hover: #52525b;
-  --border-color: #3f3f46;
-
-  --primary: #f4f4f5;
-  --on-primary: #09090b;
-  --accent: #60a5fa;
-  --accent-color: #93c5fd;
-  --accent-light: rgba(96, 165, 250, 0.18);
-  --accent-soft: rgba(96, 165, 250, 0.16);
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.55);
-}
-
-[data-theme="dark"] .btn-primary:hover {
-  filter: brightness(0.92);
-  color: var(--on-primary);
-}
-
-[data-theme="dark"] body::before {
-  background-image: 
-    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-}
-
-
-/* Projects Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 1.25rem;
-  padding: 2rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-color);
-  box-shadow: var(--card-shadow);
-}
-
-.project-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: var(--text-main);
-}
-
-.project-desc {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-.project-techs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-tech {
-  background: var(--accent-light);
-  color: var(--accent-color);
-  padding: 0.25rem 0.75rem;
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.project-link {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.project-link:hover {
-  text-decoration: underline;
-}
-
-::placeholder {
-  color: var(--text-dim);
-}
+print("CSS generation complete.")
