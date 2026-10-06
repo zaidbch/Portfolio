@@ -60,7 +60,6 @@ function renderFooter() {
 
   footer.innerHTML = `
     <div class="footer-brand">
-      <a href="/index.html" class="footer-logo">ZB<span class="logo-dot">.</span></a>
       <p class="footer-copy">© ${currentYear} ${profile.fullName}. ${t("footerCopy")}</p>
     </div>
 
@@ -1072,7 +1071,7 @@ function setupLangToggle() {
 
 function setupScrollReveal() {
   const items = document.querySelectorAll(
-    ".home-card, .skills-card, .cert-card, .strength-card, .timeline-item, .contact-card"
+    ".home-card, .skills-card, .cert-card, .strength-card, .timeline-item, .contact-card, .project-card"
   );
   if (!items.length) return;
 
@@ -1101,31 +1100,118 @@ function setupScrollReveal() {
 function initProjectsPage() {
   const container = $("#projects-page-container");
   if (!container) return;
-  
+
   if (!projects || projects.length === 0) {
     container.innerHTML = `<p class="page-lead">${t("projectsEmpty")}</p>`;
     return;
   }
-  
+
   let html = '<div class="projects-grid">';
   projects.forEach((p, index) => {
     const copy = lang === "en" ? projectsEn[index] || p : p;
+    const highlights = copy.highlights || p.highlights || [];
+    const gallery = p.gallery && p.gallery.length ? p.gallery : p.image ? [{ src: p.image, alt: copy.title }] : [];
+    const cover = gallery[0];
+    const thumbs = gallery
+      .map(
+        (item, i) => `
+        <button type="button" class="project-thumb ${i === 0 ? "is-active" : ""}" data-src="${item.src}" data-alt="${item.alt || copy.title}" aria-label="${item.alt || copy.title}">
+          <img src="${item.src}" alt="${item.alt || copy.title}" loading="lazy" />
+        </button>`
+      )
+      .join("");
+
     html += `
-      <div class="project-card reveal-item">
-        <h3 class="project-title">${copy.title}</h3>
-        <p class="project-desc">${copy.description}</p>
-        <div class="project-techs">
-          ${p.techs.map(t => `<span class="project-tech">${t}</span>`).join('')}
+      <article class="project-card reveal-item">
+        ${
+          cover
+            ? `<button type="button" class="project-cover" data-src="${cover.src}" data-alt="${cover.alt || copy.title}">
+          <img src="${cover.src}" alt="${cover.alt || copy.title}" />
+        </button>`
+            : ""
+        }
+        <div class="project-body">
+          <h3 class="project-title">${copy.title}</h3>
+          <p class="project-desc">${copy.description}</p>
+          ${
+            highlights.length
+              ? `<ul class="project-highlights">${highlights.map((h) => `<li>${h}</li>`).join("")}</ul>`
+              : ""
+          }
+          ${gallery.length > 1 ? `<div class="project-gallery">${thumbs}</div>` : ""}
+          <div class="project-techs">
+            ${p.techs.map((tech) => `<span class="project-tech">${tech}</span>`).join("")}
+          </div>
+          ${
+            p.githubUrl || p.demoUrl
+              ? `<div class="project-links">
+            ${p.githubUrl ? `<a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link">GitHub ↗</a>` : ""}
+            ${p.demoUrl ? `<a href="${p.demoUrl}" target="_blank" rel="noopener noreferrer" class="project-link">Demo ↗</a>` : ""}
+          </div>`
+              : ""
+          }
         </div>
-        <div class="project-links">
-          ${p.githubUrl ? `<a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link">GitHub ↗</a>` : ''}
-          ${p.demoUrl ? `<a href="${p.demoUrl}" target="_blank" rel="noopener noreferrer" class="project-link">Demo ↗</a>` : ''}
-        </div>
-      </div>
+      </article>
     `;
   });
-  html += '</div>';
+  html += "</div>";
   container.innerHTML = html;
+  setupProjectGallery(container);
+}
+
+function setupProjectGallery(container) {
+  const lightbox = document.createElement("div");
+  lightbox.className = "project-lightbox";
+  lightbox.hidden = true;
+  lightbox.innerHTML = `
+    <button type="button" class="project-lightbox-close" aria-label="${lang === "en" ? "Close" : "Fermer"}">×</button>
+    <img alt="" />
+  `;
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector("img");
+  const closeBtn = lightbox.querySelector(".project-lightbox-close");
+
+  const closeLightbox = () => {
+    lightbox.hidden = true;
+    lightboxImg.removeAttribute("src");
+  };
+
+  const openLightbox = (src, alt) => {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.hidden = false;
+  };
+
+  closeBtn.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !lightbox.hidden) closeLightbox();
+  });
+
+  container.querySelectorAll(".project-card").forEach((card) => {
+    const coverBtn = card.querySelector(".project-cover");
+    const coverImg = coverBtn?.querySelector("img");
+
+    card.querySelectorAll(".project-thumb").forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        const src = thumb.dataset.src;
+        const alt = thumb.dataset.alt;
+        card.querySelectorAll(".project-thumb").forEach((el) => el.classList.remove("is-active"));
+        thumb.classList.add("is-active");
+        if (coverImg && coverBtn) {
+          coverImg.src = src;
+          coverImg.alt = alt;
+          coverBtn.dataset.src = src;
+          coverBtn.dataset.alt = alt;
+        }
+      });
+    });
+
+    coverBtn?.addEventListener("click", () => openLightbox(coverBtn.dataset.src, coverBtn.dataset.alt));
+  });
 }
 
 /* ==========================================================================

@@ -304,19 +304,24 @@ export const profileEn = {
 
 export const projectsEn = [
   {
-    title: "Advanced RAG Pipeline (LLM)",
+    title: "Smart Hospital Flow AI",
     description:
-      "Design of a question-answering system over internal documents using LangChain, Ollama and ChromaDB.",
+      "Decision-support platform (final-year project) for a pediatric hospital: SIH CSV reports become dashboards, per-ward saturation scores, alerts, flow forecasts and what-if simulations. The full pipeline (ingestion, cleaning, patient ID anonymization, KPIs, ML) runs in the browser, with no backend.",
+    highlights: [
+      "7 SIH CSV files (ER admissions, hospitalizations, movements, discharges, ward indicators)",
+      "Saturation score 0–100 per ward (normal / strain / saturation)",
+      "21 screens: dashboard, data-science pipeline, AI forecasts, reports",
+    ],
   },
   {
-    title: "Data Pipeline & Analytics",
+    title: "Facial Emotion Detection",
     description:
-      "Distributed ETL pipeline for large-scale data processing, orchestrated with Airflow.",
-  },
-  {
-    title: "Machine Learning Prediction API",
-    description:
-      "Robust REST API for real-time predictions based on a machine learning model.",
+      "Python desktop app that detects a face from the webcam (OpenCV Haar Cascade) and classifies 7 emotions in real time with a Keras CNN: angry, disgust, fear, happy, neutral, sad, surprise. Tkinter UI to start/stop the stream, 48×48 grayscale preprocessing, and live class + confidence display.",
+    highlights: [
+      "3-layer Conv2D + Dense CNN, trained for 20 epochs on a train/test dataset",
+      "Robust webcam capture on Windows (multiple backends and camera indexes)",
+      "CLAHE and auto brightness adjustment to stabilize face detection",
+    ],
   },
 ];
 

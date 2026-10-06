@@ -184,30 +184,43 @@ export const certificates = [
 
 export const projects = [
   {
-    id: "rag-pipeline",
-    title: "Pipeline RAG Avancé (LLM)",
-    description: "Conception d'un système de Question/Réponse sur documents internes utilisant LangChain, Ollama et ChromaDB.",
-    techs: ["Python", "LangChain", "Ollama", "ChromaDB", "FastAPI"],
-    githubUrl: "https://github.com/zaidbch/rag-pipeline",
+    id: "smart-hospital-flow-ai",
+    title: "Smart Hospital Flow AI",
+    description:
+      "Plateforme d’aide à la décision (PFE) pour l’Hôpital des Enfants : les rapports CSV du SIH sont transformés en tableaux de bord, score de saturation par service, alertes, prédictions de flux et simulations what-if. Toute la chaîne (ingestion, nettoyage, anonymisation IPP, KPI, ML) s’exécute côté navigateur, sans backend.",
+    highlights: [
+      "7 fichiers CSV du SIH (urgences, hospitalisations, mouvements, sortants, indicateurs)",
+      "Score de saturation 0–100 par service (normal / tension / saturation)",
+      "21 interfaces : dashboard, pipeline Data Science, prédictions IA, rapports",
+    ],
+    techs: ["React", "TypeScript", "Vite", "Tailwind CSS", "Recharts", "PapaParse"],
+    githubUrl: "",
     demoUrl: "",
-    image: ""
+    image: "/images/projects/hospital-dashboard.png",
+    gallery: [
+      { src: "/images/projects/hospital-dashboard.png", alt: "Tableau de bord — indicateurs hospitaliers" },
+      { src: "/images/projects/hospital-login.png", alt: "Écran de connexion" },
+      { src: "/images/projects/hospital-saturation.png", alt: "Score de saturation par service" },
+      { src: "/images/projects/hospital-predictions.png", alt: "Prédictions IA des flux" },
+    ],
   },
   {
-    id: "data-pipeline",
-    title: "Pipeline de Données & Analytics",
-    description: "Mise en place d'un pipeline ETL distribué pour le traitement de gros volumes de données. Orchestration avec Airflow.",
-    techs: ["Apache Spark", "Airflow", "Docker", "PostgreSQL"],
-    githubUrl: "https://github.com/zaidbch/data-pipeline",
+    id: "emotion-detection",
+    title: "Détection d’émotions faciales",
+    description:
+      "Application desktop Python qui détecte un visage en webcam (OpenCV Haar Cascade) et classifie 7 émotions en temps réel avec un CNN Keras : angry, disgust, fear, happy, neutral, sad, surprise. Interface Tkinter pour lancer / arrêter le flux, prétraitement 48×48 en niveaux de gris et affichage de la classe avec le score de confiance.",
+    highlights: [
+      "CNN 3 couches Conv2D + Dense, entraîné 20 époques sur un dataset train/test",
+      "Détection webcam robuste sous Windows (plusieurs backends / index caméra)",
+      "CLAHE et ajustement auto de luminosité pour stabiliser la détection",
+    ],
+    techs: ["Python", "TensorFlow / Keras", "OpenCV", "Tkinter", "NumPy"],
+    githubUrl: "",
     demoUrl: "",
-    image: ""
+    image: "/images/projects/emotion-webcam-ui.jpg",
+    gallery: [
+      { src: "/images/projects/emotion-webcam-ui.jpg", alt: "Interface webcam — émotion angry détectée" },
+      { src: "/images/projects/emotion-sample.png", alt: "Exemple de visage classifié (dataset)" },
+    ],
   },
-  {
-    id: "smart-api",
-    title: "API de Prédiction Machine Learning",
-    description: "Développement d'une API REST robuste permettant d'exécuter des prédictions en temps réel basées sur un modèle de ML.",
-    techs: ["FastAPI", "Scikit-Learn", "Pandas", "Docker"],
-    githubUrl: "https://github.com/zaidbch/ml-prediction-api",
-    demoUrl: "",
-    image: ""
-  }
 ];
